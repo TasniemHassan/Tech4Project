@@ -99,25 +99,7 @@ public class Homework16 {
     }
 
     /*public static void main(String[] args) {
-        ArrayList<String> strList = new ArrayList<>();
-        strList.add("java");
-        strList.add("C#");
-        strList.add("ruby");
-        strList.add("JAVA");
-        strList.add("ruby");
-        strList.add("C#");
-        strList.add("C++");
-
-
-
-        strList.add("abc");
-        strList.add("xyz");
-        strList.add("123");
-        strList.add("ab");
-        strList.add("ab");
-        strList.add("abc");
-        strList.add("ABC");
-
+        ArrayList<String> strList = new ArrayList<>(Arrays.asList("java","C#","ruby","JAVA","ruby","C#","C++" );
         System.out.println(removeDuplicateStringElements(strList));
     }
 
@@ -125,8 +107,15 @@ public class Homework16 {
     //TASK 6
     public static String removeExtraSpaces(String str){
 
-       String strTrim = str.trim().replaceAll("\\s+"," ");
-       return strTrim;
+        String[] strArr = str.trim().split(" ");
+        StringBuilder sentence = new StringBuilder();
+        for(String el : strArr) {
+            if (!el.isEmpty()) sentence.append(el).append(" ");
+        }
+        return sentence.substring(0, sentence.length()-1);
+
+      // String strTrim = str.trim().replaceAll("\\s+"," ");
+      // return strTrim;
     }
 
    /* public static void main(String[] args) {
@@ -135,25 +124,14 @@ public class Homework16 {
 
     */
     //TASK 7
-    public static int[] add(int[]arr1,int[]arr2) {
-        int length = Math.min(arr1.length, arr2.length);
-        int[] arr = new int[length];
-        for (int i = 0; i < length; i++) {
-            arr[i] = arr1[i] + arr2[i];
-        }
-        return arr;
-
-        /*if(arr1.length > arr.length){
-            for(int i = 0; i < arr.length; i++){
-                arr1[i]+= arr[i];
-            }
-        }
-
-         */
-        //STUCK if arr1.length > arr.length.. i want to add i to arr using loop
-        // start point arr.length end point arr1.length. BUT i keep getting out of
-        //bounds
+    /*public static int[] add(int[]arr1,int[]arr2) {
+       for(int i = 0; i<Math.min(arr1.length,arr2.length); i++){
+           if(
+       }
+       return (arr1.length> arr2.length) ? arr1:arr2;
     }
+
+     */
 
 
 
@@ -166,16 +144,17 @@ public class Homework16 {
      */
 //Task-8
     public static int findClosestTo10(int[] numbers){
-        int closest = numbers[0];
-        for(int element : numbers){
-            if((Math.abs(closest - 10) > Math.abs(10-element)))
-                closest = element;
+        int closest = Integer.MAX_VALUE;
+        Arrays.sort(numbers);
+        for(int i = 1; i< numbers.length; i++){
+            if(numbers[i] !=10 && (Math.abs(closest - 10) > Math.abs(10-numbers[i])))
+                closest = numbers[i];
         }
         return closest;
     }
 
     public static void main(String[] args) {
-        int[] numbers = {-13, 5, 70, 15, 57};
+        int[] numbers = {10,-13, 5, 70, 15, 57};
         System.out.println(findClosestTo10(numbers));
     }
 
